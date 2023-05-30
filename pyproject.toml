@@ -1,0 +1,76 @@
+## META
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'django-orm-performance-enhancers'
+description = 'A set of QuerySet performance enhancers for Django ORM'
+readme = 'README.md'
+requires-python = '>=3.7'
+license = 'MIT'
+keywords = []
+authors = [
+  { name = 'Oleksandr Mashianov', email = 'mashianov@gmail.com' },
+]
+classifiers = [
+  'Development Status :: 4 - Beta',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: Implementation :: CPython',
+]
+dependencies = [
+  'django >= 3.2',
+  'django-stubs',
+  'typing_extensions',
+  'psycopg2-binary>=2.8'
+]
+dynamic = ['version']
+
+[project.urls]
+Documentation = 'https://github.com/imakedonsky/django-orm-performance-enhancers#readme'
+Issues = 'https://github.com/imakedonsky/django-orm-performance-enhancers/issues'
+Source = 'https://github.com/imakedonsky/django-orm-performance-enhancers'
+
+
+## LOCAL DEV INFO
+[tool.hatch.envs.default]
+dependencies = [
+  'django-stubs',
+  'tox',
+]
+
+[tool.hatch.envs.default.scripts]
+test = 'tox'
+
+# BUILD INFO
+[tool.hatch.version]
+path = 'django_orm_performance_enhancers/__about__.py'
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  '/.github',
+  '/docs',
+  '.tox',
+  '.idea/',
+  'demo_proj/',
+  '.gitignore',
+  'tox.ini'
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/foo']
+
+## TOOLING CONFIGS
+[tool.mypy]
+plugins = ['mypy_django_plugin.main']
+
+[tool.django-stubs]
+django_settings_module = 'demo_proj.conf.settings'
+
+[tool.ruff]
+line-length = 128
